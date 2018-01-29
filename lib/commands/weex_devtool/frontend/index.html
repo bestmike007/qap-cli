@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QAP 调试工作台</title>
+    <link rel="shortcut icon" href="qn.ico" type="image/x-icon" />
+    <script src="vendor/qrcode.min.js"></script>
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="lib/app.css"></link>
+    
+</head>
+
+</body>
+    <body>
+        <div class="nav">
+            <div class="container">
+                <div class="row row-single">
+                    <h2 class="title">调试工作台</h2>
+                    <div class="btn-segcontrol btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-control btn-default J_debug_type" data-type="single"> Native 单页</button>
+                        </div>
+                        
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-control btn-default J_debug_type" data-type="qap">QAP 应用</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-control btn-default J_debug_type" data-type="h5">h5 降级</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sessions J_sessions">
+            <div class="container">
+                <div class="arrow"></div>
+
+                <div class="row" id="J_sessions_list">
+  
+                </div>
+                
+            </div>
+        </div>
+        <div class="opts options-single J_options J_options_single" style="display: none">
+            <div class="container">
+                <div class="row  row-qr">
+                    <div class="step1">
+                        <div class="step-info-wrap"><div class="step-info">Step 1. 扫码建立连接</div></div>
+                        
+                        <!-- <p><img class="qr-image" src="https://img.alicdn.com/tfs/TB1OcOHQVXXXXbdXpXXXXXXXXXX-280-280.png" /></p> -->
+                        <div id="qap_weex_connect" class="qrcode"></div>
+                        <!-- "http://" + location.host +"/run.html?_wx_devtool=ws://" + location.hostname + ":8088/debugProxy/native" -->
+
+                    </div>
+                    <div class="step2">
+                        <div class="step-info-wrap">
+                            <div class="step-info">Step 2. 选取页面，扫码调试</div>
+                            <div class="dropdown dropdown-wrapper">
+                                <button class="btn-choose btn btn-default dropdown-toggle" type="button" id="dropdownMenu_single" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="text" id="weex_debug_selector_default"></span>
+                                </button>
+                                <ul id="weex_debug_selector" class="dropdown-menu" aria-labelledby="dropdownMenu_single">
+                                    <!-- <li><a href="javascript:;" class="menu-item" data-target="http://localhost/debugtool/index.js">index</a></li>
+                                    <li><a href="javascript:;" class="menu-item" data-target="http://localhost/debugtool/index2.js">index2</a></li>
+                                    <li><a href="javascript:;" class="menu-item" data-target="http://localhost/debugtool/index3.js">index3</a></li> -->
+                                </ul>
+                                <a id="weex_page_url" class="link" target="_blank" href=""></a>
+                            </div>
+                        </div>
+                        
+                        
+
+                        <!-- <p><img class="qr-image" src="https://img.alicdn.com/tfs/TB1OcOHQVXXXXbdXpXXXXXXXXXX-280-280.png" /></p> -->
+                        <div id="qap_weex_page" class="qrcode"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="opts options-qap J_options J_options_qap" style="display: none">
+            <div class="container">
+                <div class="row  row-qr">
+                    <div class="step1">
+                        <div class="step-info-wrap"><div class="step-info">扫码调试</div></div>
+                        <!-- <p id="switchQrcode"><img class="qr-image" src="https://img.alicdn.com/tfs/TB1OcOHQVXXXXbdXpXXXXXXXXXX-280-280.png" /></p> -->
+                        <div id="switchQrcode" class="qrcode"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="opts options-h5 J_options J_options_h5" style="display: none">
+            <div class="container">
+                <div class="row  row-qr">
+                    <div class="step2">
+                        <div class="step-info-wrap">
+                            <div class="step-info">选取页面，扫码调试</div>
+                            <div class="dropdown dropdown-wrapper">
+                                <button class="btn-choose btn btn-default dropdown-toggle" type="button" id="dropdownMenu_h5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="text" id="h5_debug_selector_default">index</span>
+                                </button>
+                                <ul id="h5_menu" class="dropdown-menu" aria-labelledby="dropdownMenu_h5">
+                                </ul>
+                                <a id="h5_page_url" class="link" target="_blank" href=""></a>
+                            </div>
+                        </div>
+                        
+                        
+
+                        <!-- <p><img class="qr-image" src="https://img.alicdn.com/tfs/TB1OcOHQVXXXXbdXpXXXXXXXXXX-280-280.png" /></p> -->
+                        <div id="qap_h5_page" class="qrcode"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="docs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>文档</h3>
+                        <p><a class="link" target="_blank" href="http://nuke.taobao.org">nuke 组件文档</a></p>
+                        <p><a class="link" target="_blank" href="https://alibaba.github.io/rax/">rax 官网</a></p>
+                        <p><a class="link" target="_blank" href="http://open.taobao.com/docs/doc.htm?treeId=260&articleId=105545&docType=1">QAP 平台介绍与文档</a></p>
+                        <p><a class="link" target="_blank" href="https://alimarket.taobao.com/markets/qnww/qap-sdk/doc">千牛 QAP-SDK 文档</a></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <h3>常见命令</h3>
+                        <p>客户端获取：qap qianniu </p>
+                        <p>打包：qap package </p>
+                    </div>
+                    <div class="col-xs-4">
+                        <h3>问答、反馈、建议</h3>
+                        <p>旺旺讨论群： 1551341770</p>
+                        <p><a class="link" target="_blank" href="https://yq.aliyun.com/tags/type_ask-tagid_16957">云栖社区</a></p>
+                        <p>脚手架: 督布、小眀</p>
+                        <p>组件 && 其他: 翊晨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="lib/jquery.min.js"></script>
+        <script src="lib/bootstrap.min.js"></script>
+    
+        <script>
+            var type = 'qap';
+            $('.J_options_'+ type).show();
+            $('.J_debug_type[data-type='+type+']').addClass('active');
+            $('.btn-control').click(function(){
+                $(this).parents('.btn-segcontrol').find('.btn-control').removeClass('active');
+                $(this).addClass('active');
+            });
+            $('.dropdown-toggle').dropdown();
+            
+            $('#weex_debug_selector').on('click', function (e) {
+                var $target = $(e.target);
+                var $parent = $target.parents('.dropdown');
+                $parent.find('.text').text($target.text());
+
+                var jsPathlocal = location.protocol + '//' + location.hostname + ':' + qapdebug.webpackPort + qapdebug.jsPath + $target.text();
+                var tmpJsPath = location.origin + '/?_wx_tpl=' + encodeURIComponent(jsPathlocal);
+                console.log('tmpJsPath', tmpJsPath);
+                createQRCode('qap_weex_page', tmpJsPath);
+                document.querySelector('#weex_page_url').innerHTML = jsPathlocal;
+                $('#weex_page_url').attr("href", jsPathlocal);
+            });
+
+            $('#h5_menu').on('click', function (e) {
+                var $target = $(e.target);
+                var $parent = $target.parents('.dropdown');
+                $parent.find('.text').text($target.text());
+
+                var h5PageValue = location.protocol + '//' + location.hostname + ':8080' + qapdebug.jsPath + $target.text() + '?_is_qap_=true';
+                console.log('h5PageValue', h5PageValue);
+                createQRCode('qap_h5_page', h5PageValue);
+                document.querySelector('#h5_page_url').innerHTML = h5PageValue;
+                $('#h5_page_url').attr("href", h5PageValue);
+            });
+
+            $('.J_debug_type').on('click',function(e){
+                type = $(this).attr('data-type');
+                $('.J_options').hide();
+                $('.J_options_'+ type).show();
+                if(type === 'h5'){
+                    $('.J_sessions').hide();
+                }else{
+                    $('.J_sessions').show();
+                }
+            })
+        </script>
+        <script src="lib/App.js"></script>
+    </body>
+</html>

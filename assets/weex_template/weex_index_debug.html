@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <style>
+        *{padding: 0; margin: 0}
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-size: 12px;
+            color: #333;
+        }
+        body{
+            margin: 0 auto;
+            min-width: 320px;
+            max-width: 640px;
+        }
+
+        body > div {
+            height: 100%
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    window.__QAP__ = window.__QAP__ || {};
+    __QAP__.package = {
+        config: <%- qap_json %>
+    };
+    __QAP__.package.config.WebRootPath = "<%= debugWebRootPath %>";
+</script>
+
+<script src="https://a.alipayobjects.com/g/qap/jssdk/1.0.3/index.js"></script>
+<script id="script" type="text/javascript" src="<%= bundleJs %>"></script>
+
+</body>
+</html>

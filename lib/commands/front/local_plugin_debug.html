@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>调试本地安装的插件</title>
+    <script src="./jquery.min.js"></script>
+    <script type="text/javascript" src="./jquery.qrcode.min.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+    
+    .container {
+        padding: 25px 0;
+        text-align: center
+    }
+    
+    h1 {
+        font-size: 24px;
+        font-family: Arial;
+        color: rgba(0, 0, 0, 0.8);
+        text-align: center
+    }
+    
+    .desc {
+        font-size: 16px;
+        margin: 20px auto;
+        width: 380px;
+        line-height: 39px;
+        text-align: left
+    }
+    
+    .img,
+    .img img {
+        margin: 0 auto;
+        width: 240px;
+        height: 240px;
+        display: block;
+        vertical-align: middle;
+        color: darkred
+    }
+    
+    a {
+        color: #c12127
+    }
+    </style>
+</head>
+
+<body>
+    <br/>
+    <!-- Example single danger button -->
+    <!-- <div style="padding-top:50px;font-size: 28px; width:50%; height:100%; text-align: left;margin:auto">
+        <div style="width: 50%;float: left;" id="J_img">
+        </div>
+        <div style="width: 50%;float: right;" id="J_img_h5">
+        </div>
+        <div style="clear: both"></div>
+    </div> -->
+    <div style="display: flex; align-items: center;">
+        <div style="width: 50%;float: left;" id="J_img">
+        </div>
+    </div>
+
+    <!-- <div style="padding-top:15px;font-size: 16px; width:50%; height:100%; text-align: left;margin:auto">
+        <div style="width: 50%;float: left; margin:auto">
+            <p align="center">Android千牛安装包</p>
+        </div>
+        <div style="width: 50%;float: right;">
+            <p align="center">iOS千牛安装包</p>
+        </div>
+        <div style="clear: both"></div>
+    </div> -->
+    <br/>
+    <br/>
+    <p align="center">请使用千牛工作台，右上角扫码</p>
+    <script>
+    (function() {
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        function displayQrcode(paramAndroid) {
+            if(paramAndroid){
+                var android_url = decodeURIComponent(getURLParameter(paramAndroid));
+                console.log(android_url);
+                jQuery('#J_img').qrcode(android_url);
+            }
+        }
+
+        displayQrcode('android');
+    })();
+    </script>
+</body>
+
+</html>

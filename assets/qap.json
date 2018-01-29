@@ -1,0 +1,21 @@
+{
+  "appKey": "23523714",
+  "version": "1.6",
+  "pages": [
+    {
+      "default": true,
+      "url": "qap:///index.js"
+    },
+    {
+      "capability": "refundDetail",
+      "url": "qap:///home.js?aa==bb",
+      "h5Url": "http://30.5.104.78:8080/home.html?aa==bb"
+    }
+  ],
+  "iconfonts": [
+  ],
+  "WebRootPath": "http://30.5.104.78:8080/build/",
+  "min_qn_android": "5.8.2",
+  "min_qn_ios": "5.8.2",
+  "jssdk": "1.0.19"
+}

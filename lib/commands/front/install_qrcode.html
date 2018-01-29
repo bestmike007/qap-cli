@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>千牛二维码</title>
+    <script src="./jquery.min.js"></script>
+    <script type="text/javascript" src="./jquery.qrcode.min.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+    
+    .container {
+        padding: 25px 0;
+        text-align: center
+    }
+    
+    h1 {
+        font-size: 24px;
+        font-family: Arial;
+        color: rgba(0, 0, 0, 0.8);
+        text-align: center
+    }
+    
+    .desc {
+        font-size: 16px;
+        margin: 20px auto;
+        width: 380px;
+        line-height: 39px;
+        text-align: left
+    }
+    
+    .img,
+    .img img {
+        margin: 0 auto;
+        width: 240px;
+        height: 240px;
+        display: block;
+        vertical-align: middle;
+        color: darkred
+    }
+    
+    a {
+        color: #c12127
+    }
+    </style>
+</head>
+
+<body>
+    <br/>
+    <!-- Example single danger button -->
+    <div style="padding-top:20px;font-size: 28px; width:50%; text-align: left;margin:auto">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                稳定版
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="1">稳定版</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="2">测试版</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="3">X86版</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style="padding-top:50px;font-size: 28px; width:50%; height:100%; text-align: left;margin:auto">
+        <div style="width: 50%;float: left;" id="J_img">
+        </div>
+        <div style="width: 50%;float: right;" id="J_img_h5">
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div style="padding-top:15px;font-size: 16px; width:50%; height:100%; text-align: left;margin:auto">
+        <div style="width: 50%;float: left; margin:auto">
+            <p align="center">Android千牛安装包</p>
+        </div>
+        <div style="width: 50%;float: right;">
+            <p align="center">iOS千牛安装包</p>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <br/>
+    <br/>
+    <p align="center">请使用UC浏览器扫码安装</p>
+    <p align="center">如果无法安装请先删除手机上的千牛</p>
+    <script>
+    (function() {
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        function displayQrcode(paramAndroid, paramIos) {
+            if(paramAndroid){
+                var android_url = decodeURIComponent(getURLParameter(paramAndroid));
+                console.log(android_url);
+                jQuery('#J_img').qrcode(android_url);
+            }
+
+            if(paramIos){
+                var ios_url = decodeURIComponent(getURLParameter(paramIos));
+                console.log(ios_url);
+                jQuery('#J_img_h5').qrcode(ios_url);
+            }
+        }
+
+        displayQrcode('android', 'ios');
+
+        $('.dropdown-menu a').click(function() {
+            //稳定版
+            jQuery('canvas').remove();
+            if ($(this).attr('id') == '1') {
+                console.log('\n\n\n稳定版')
+                $(".dropdown-toggle").html("稳定版<span class=\"caret\"></span>");
+                displayQrcode('android', 'ios');
+            } else if($(this).attr('id') == '2'){
+                //测试版
+                console.log('\n\n\n测试版')
+                $(".dropdown-toggle").html("测试版<span class=\"caret\"></span>");
+                displayQrcode('android_dev', 'ios_dev');
+            } else if($(this).attr('id') == '3'){
+                //X86版
+                console.log('\n\n\nX86版')
+                $(".dropdown-toggle").html("X86版<span class=\"caret\"></span>");
+                displayQrcode('android_x86', undefined);
+            }
+        });
+    })();
+    </script>
+</body>
+
+</html>
