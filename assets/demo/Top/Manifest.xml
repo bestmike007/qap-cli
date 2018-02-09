@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest appKey="1234" version="1.0">
-	<pages>
-		<page default="true" launchMode="singleTask">we://index.js</page>
-	</pages>
-</manifest>
